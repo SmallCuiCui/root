@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		用户名：<input type="text" id="username"> <br>
+		密码：<input type="password" id="password"><br>
+		<button id="btn">注册</button>
+		<script src="../../tools.js"></script>
+		<script>
+			var userInput = document.querySelector("#username");
+			var pwdInput = document.querySelector("#password");
+			var btn = document.querySelector("#btn");
+			btn.onclick = function () {
+				var username = userInput.value;
+				var pwd = pwdInput.value;
+				// 利用解构赋值直接存cookie
+				tools.cookie("register", JSON.stringify({
+					username, 
+					pwd
+				}), {path:"/"});
+				
+				if(confirm("注册成功，即将跳转登录页")){
+					location.href = "login.html";
+					// window.open("login.html");
+				}
+				
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // console.dir(Promise);
+    let a = 20;
+    // 许下了一个承诺，两秒之后a的值大于30
+    let pro = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if(a < 30){
+          resolve();
+        }else{
+          reject();
+        }
+      }, 2000);
+    });
+
+    pro.then(() => {
+      // 承诺兑现的时候要执行的代码
+      console.log("yes");
+    }).catch(() => {
+      // 承诺失信的时候要执行的代码
+      console.log("no");
+    }).finally(() => {
+      console.log("finally");
+    })
+  
+
+    tools.ajax("url", null, function () {
+      tools.ajax("url", null, function () {
+        tools.ajax("url", null, function () {
+      
+        })
+      })
+    })
+
+  </script>
+</body>
+</html>

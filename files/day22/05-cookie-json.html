@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="setCookie()">存</button>
+  <button onclick="getCookie()">取</button>
+  
+  <script>
+    function setCookie() {
+      var userinfo = {
+        "username" : '张三',
+        "age" : 18,
+        "password" : "123456"
+      };
+      document.cookie = "username=" + JSON.stringify(userinfo);
+    }
+    function getCookie() {
+      console.log(document.cookie);
+    }
+  </script>
+</body>
+</html>

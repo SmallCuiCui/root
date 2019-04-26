@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+
+		ajaxGet('http://rap2api.taobao.org/app/mock/166390/test2',{id:5},function(data){
+			console.log(data);
+		},true)
+
+		ajaxAll('post','http://rap2api.taobao.org/app/mock/166390/test2',{id:5},function(data){
+			console.log(data);
+		});
+
+		// query参数为空的话传null，callback与isJson有是否存在的判断
+		function ajaxGet(url,query,callback,isJson){
+			//isJson没有传递时默认为true，转换为json格式的数据
+			isJson = isJson === undefined ? true : isJson;
+			//1、新建一个ajax核心对象
+			var ajax = new XMLHttpRequest();
+
+			//get方法的参数拼接在url后面
+			//判断是否传参
+			if(query){
+				url += '?';
+				for(var key in query){
+					url += key +'='+query[key] +'&';
+				}
+				url = url.slice(0, -1);
+			}
+			//2、open
+			ajax.open('GET',url,true);
+			//3、send
+			ajax.send(null);
+			//4、监听状态的变化
+			ajax.onreadystatechange = function(){
+				if(ajax.readyState === 4 && ajax.status === 200){
+					//isJson判断是否使用JSON.parse()转换成json数据格式
+					var data = isJson ? JSON.parse(ajax.responseText) : ajax.responseText;
+					//利用逻辑短路，判断是否存在回调函数，存在并且调用回调函数
+					//回调函数的调用方法，一般需要判断是否存在，因为不存在时调用会报错
+					callback && callback(data);
+				}
+			}
+		}
+
+		function ajaxAll(method,url,query,callback,isJson){
+			isJson = isJson === undefined ? true :isJson;
+			if(method.toUpperCase() === 'GET'){
+				ajaxGet(url,query,callback,isJson);
+			}else if(method.toUpperCase() === 'POST'){
+				var ajax = new XMLHttpRequest();
+
+				ajax.open('POST',url,true);
+
+				var str = '';
+				if(query){
+					for(var key in query){
+						str  += key +'='+ query[key] +'&';
+					}
+					str.slice(0, -1);
+				}
+				ajax.send(str);
+
+				ajx.onreadystatechange = function(){
+					if(ajax.readyState === 4){
+						if(ajax.status === 200){
+							callback && callback(isJson ? JSON.parse(ajax.responseText) : ajax.responseText);
+						}else{
+							alert('请求失败');
+						}
+					}
+				}
+			}else{
+				console.log(111);
+			}
+		}
+
+
+	</script>
+</body>
+</html>

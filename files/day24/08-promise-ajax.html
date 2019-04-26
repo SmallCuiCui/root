@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../tools.js"></script>
+  <script>
+    // new Promise((resolve, reject) => {
+    //   let ajax = new XMLHttpRequest();
+    //   ajax.open("get", "data.php", true);
+    //   ajax.send(null);
+    //   ajax.onreadystatechange = function () {
+    //     if(ajax.readyState === 4){
+    //       if(ajax.status === 200){
+    //         resolve(ajax.responseText);
+    //       }else{
+    //         reject();
+    //       }
+    //     }
+    //   }
+    // }).then((data) => {
+    //   console.log(data);
+    // })
+
+    // tools.ajaxGet("data.php",  {id:3}, function (data) {
+    //   console.log(data);
+    // })
+
+    tools.ajaxGetPromise("data.php", {id:3})
+      .then(data => {
+        console.log(data);
+      });
+
+    
+  </script>
+</body>
+</html>

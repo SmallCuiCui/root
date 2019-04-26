@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 1、创建一个ajax核心对象
+    var ajax = new XMLHttpRequest();
+    // 2、open方法打开连接（请求方式get\post，请求的地址url，是否异步true代表异步）
+    //   作为get请求如果要传输数据，就拼接在url后面
+    ajax.open("GET", "ajax.php?id=2", true);
+    // ajax.open("GET", "data.json", true);
+    // 3、send方法，发送请求
+    ajax.send(null);
+    // 4、监听状态的变化
+    ajax.onreadystatechange = function () {
+      if(ajax.readyState === 4 && ajax.status === 200){
+        // 交易成功
+        var json = JSON.parse(ajax.responseText)
+        console.log(json);
+      }
+    }
+
+  </script>
+</body>
+</html>

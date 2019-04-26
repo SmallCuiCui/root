@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id="shop-list"></ul>
+		<script>
+			var shopList = [
+				{"id": 1, "name": "鼠标", "price": 100},
+				{"id": 2, "name": "口红", "price": 300},
+				{"id": 3, "name": "手办", "price": 2},
+				{"id": 4, "name": "被子", "price": 200}
+			];
+			var ul = document.querySelector("#shop-list");
+			shopList.forEach(function (shop){
+				var li = document.createElement("li");
+				li.innerHTML = `
+					<span>${shop.name}</span>
+					<span>￥：${shop.price}</span>
+					<a href="detail.html?id=${shop.id}">查看详情</a>`;
+				ul.appendChild(li);
+			})
+			
+		</script>
+	</body>
+</html>

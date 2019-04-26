@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		用户名：<input type="text" id="username"> <br>
+		密码：<input type="password" id="password"><br>
+		<button id="btn">登录</button>
+		<script src="../../tools.js"></script>
+		<script>
+			var userInput = document.querySelector("#username");
+			var pwdInput = document.querySelector("#password");
+			var btn = document.querySelector("#btn");
+			// 取cookie
+			var userinfo = JSON.parse(tools.cookie("register"));
+			console.log(userinfo);
+			userInput.value = userinfo.username;
+			pwdInput.value = userinfo.pwd;
+			
+		</script>
+	</body>
+</html>

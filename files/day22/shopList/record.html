@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id="record-list"></ul>
+		<script>
+			var ul = document.querySelector("#record-list");
+			var record = localStorage.getItem("record");
+			if(record){
+				record = JSON.parse(record);
+				record.forEach(function (shop) {
+					var li = document.createElement("li");
+					li.innerHTML = `
+						<span>${shop.id}</span>
+						<span>${shop.name}</span>
+						<span>￥：${shop.price}</span>
+						<a href="detail.html?id=${shop.id}">查看详情</a>`;
+					ul.appendChild(li);
+				})
+			}else{
+				alert("没有浏览记录，快去看看吧");
+			}
+		</script>
+	</body>
+</html>

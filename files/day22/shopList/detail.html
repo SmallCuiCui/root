@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<a href="record.html">查看浏览记录</a>
+		<script>
+			// 没有后台,自己手写
+			var shopList = [
+				{"id": 1, "name": "鼠标", "price": 100},
+				{"id": 2, "name": "口红", "price": 300},
+				{"id": 3, "name": "手办", "price": 2},
+				{"id": 4, "name": "被子", "price": 200}
+			];
+			// 取id
+			var id = location.search.slice(4);
+			console.log(id);
+			
+			var detail = shopList.filter(function (shop) {
+				return shop.id == id;
+			})[0];
+			
+			console.log(detail);
+			// 考虑localStorage里是否已经存在浏览记录
+			var record = localStorage.getItem("record");
+			if(record){
+				// 已经有历史记录了
+				record = JSON.parse(record);
+				// 在头部插入
+				record.unshift(detail);
+				// 把修改完成之后的存进去
+				localStorage.setItem("record", JSON.stringify(record));
+				
+			}else{
+				// 不存在历史纪录
+				// 构建一个只有一个元素的数组
+				localStorage.setItem("record", JSON.stringify([detail]));
+			}
+			
+			
+			
+		</script>
+	</body>
+</html>

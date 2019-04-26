@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" id="search">
+  <ul></ul>
+  <script src="../tools.js"></script>
+  <script>
+    document.querySelector("#search").onkeyup = function () {
+      var search = this.value;
+      tools.ajaxJsonp("https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su", "searchCb", {"wd": search});
+    }
+    function searchCb (data) {
+      console.log(data.s);
+      // 回调里面可以得到返回的数据，渲染ul，显示搜索提示
+      // 给ul事件委托，点击li的时候把内容放入input完成搜索功能
+    }
+  </script>
+</body>
+</html>

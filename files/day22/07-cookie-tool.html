@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="setCookie()">存</button>
+  <button onclick="getCookie()">取</button>
+  <button onclick="deleteCookie()">删</button>
+	<script src="../tools.js"></script>
+  <script>
+    function setCookie() {
+      // document.cookie = "username=zhangsan";
+			tools.cookie("username", "李四", {path:"/"});
+    }
+    function getCookie() {
+      // console.log(document.cookie);
+			var username = tools.cookie("username");
+			console.log(username);
+    }
+		function deleteCookie(){
+			tools.cookie("username", "", {expires:-1,path: "/"});
+		}
+
+    
+
+
+
+  </script>
+</body>
+</html>

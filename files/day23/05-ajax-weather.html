@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../tools.js"></script>
+  <script>
+    tools.ajax("get", "http://route.showapi.com/9-5", {
+      "showapi_appid": "73212",
+      "showapi_sign": "098f694bc7e047918fbe5950c489dead",
+      "from": "5",
+      "lng": "104.08298",
+      "lat": "30.62954"
+    }, function (data){
+      console.log(data);
+    })
+  </script>
+  
+</body>
+</html>
