@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>jsonp解决跨域问题</title>
+</head>
+<body>
+
+	<input type="text" id="search" name="">
+
+	<script type="text/javascript">
+
+		//采用jsonp方法，跨域调用百度搜索的接口方法
+		document.querySelector('#search').onkeyup = function(){
+			var search = this.value;
+			ajaxJsonp("https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su","searchCb",{"wd":search});
+		}
+		function searchCb(data){
+			console.log(data.s);
+		}
+
+		//hbuilder运行，体现跨域效果
+		function fn(obj){
+			console.log(obj);
+		}
+
+		ajaxJsonp("http://localhost/test/ajax/jsonp.php","fn",null);
+		/*jsonp请求数据
+		* @param  url <string>  请求的地址
+		* @param  cb <function> 回调函数的函数名
+		* @param query <object> 请求携带的参数
+		*/
+		function ajaxJsonp(url, cb, query){
+			var script = document.createElement('script');
+
+			url += "?cb=" +cb;
+			if(query){
+				for(var key in query){
+					url += "&" + key +"="+ query[key];
+				}
+			}
+			script.src = url;
+			document.body.appendChild(script);
+			//过河拆桥
+			document.body.removeChild(script);
+			
+		}
+	</script>
+</body>
+</html>

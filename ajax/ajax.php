@@ -1,6 +1,7 @@
 <?php
-$id = $_GET["id"];
 
+
+$id = $_GET["id"];
 $arr = array(
   "id" => $id,
   "txt" => "hello world"

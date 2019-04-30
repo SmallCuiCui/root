@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>promise实现ajax的get方式</title>
+</head>
+<body>
+	<script type="text/javascript">
+		
+		/*new Promise(function(resolve,reject){
+			var ajax = new XMLHttpRequest();
+			ajax.open("GET","ajax.php?id=5",true);
+			ajax.send(null);
+			ajax.onreadystatechange = function(){
+				if(ajax.readyState === 4){
+					if(ajax.status === 200){
+						resolve(ajax.responseText);
+					}else{
+						reject();
+					}
+				}
+			}
+		}).then(function(data){
+			console.log(data);
+		}).catch(function(){
+			console.log("访问失败！");
+		}).finally(function(){
+			console.log("promise实现ajax的get方式");
+		});*/
+		ajaxGetPomise("ajax.php",{"id":5}).then(function(data){
+			console.log(data);
+			console.log("promise实现ajax的get方式");
+		}).catch(function(){
+			console.log("失信");
+		})
+
+		function ajaxGetPomise(url, query, isJson){
+			isJson = isJson === undefined ? true:isJson;
+			
+
+			url += "?";
+			if(query){
+				for(var key in query){
+					url += key +"="+ query[key] +"&";
+				}
+				url = url.slice(0, -1);
+			}
+			
+
+			return new Promise(function(resolve,reject){
+				var ajax = new XMLHttpRequest();
+				ajax.open("GET",url,true);
+				ajax.send(null);
+
+				ajax.onreadystatechange = function(){
+					if(ajax.readyState === 4){
+						if(ajax.status === 200){
+							resolve(isJson ? JSON.parse(ajax.responseText) : ajax.responseText);
+						}else{
+							reject();
+						}
+					}
+				}
+			})
+		}
+
+	</script>
+</body>
+</html>

@@ -9,9 +9,9 @@
 
 		ajaxGet('http://rap2api.taobao.org/app/mock/166390/test2',{id:5},function(data){
 			console.log(data);
-		},true)
+		},true);
 
-		ajaxAll('post','http://rap2api.taobao.org/app/mock/166390/test2',{id:5},function(data){
+		ajaxAll('post','http://rap2api.taobao.org/app/mock/166390/newOne',{id:5},function(data){
 			console.log(data);
 		});
 
@@ -48,13 +48,16 @@
 		}
 
 		function ajaxAll(method,url,query,callback,isJson){
+
 			isJson = isJson === undefined ? true :isJson;
+
 			if(method.toUpperCase() === 'GET'){
 				ajaxGet(url,query,callback,isJson);
 			}else if(method.toUpperCase() === 'POST'){
 				var ajax = new XMLHttpRequest();
 
 				ajax.open('POST',url,true);
+				ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 
 				var str = '';
 				if(query){
@@ -65,7 +68,7 @@
 				}
 				ajax.send(str);
 
-				ajx.onreadystatechange = function(){
+				ajax.onreadystatechange = function(){
 					if(ajax.readyState === 4){
 						if(ajax.status === 200){
 							callback && callback(isJson ? JSON.parse(ajax.responseText) : ajax.responseText);

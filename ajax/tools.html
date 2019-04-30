@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript" src="tools.js"></script>
+	<script type="text/javascript">
+
+		tools.ajax("get","http://rap2api.taobao.org/app/mock/166390/test2",{id:2},function(data){
+			console.log(data);
+		});
+		tools.ajax("post","http://rap2api.taobao.org/app/mock/166390/newOne",{id:2},function(data){
+			console.log(data);
+		});
+
+
+	</script>
+</body>
+</html>

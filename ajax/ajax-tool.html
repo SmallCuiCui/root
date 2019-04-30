@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		
+		ajaxAll('post',"http://rap2api.taobao.org/app/mock/166390/newOne",{id:2},function(data){
+			console.log(data);
+		});
+
+		ajaxAll('get',"http://rap2api.taobao.org/app/mock/166390/test2",{id:2},function(data){
+			console.log(data);
+		});
+
+		/*ajax方法
+		*@param method <string> get或者post方法
+		*@param url <string> 接口地址
+		*@param query <object> 参数
+		*@param callback <function> 回调函数
+		*@param isJson 是否转成json格式数据
+		*/
+		function ajaxAll(method,url,query,callback,isJson){
+
+			isJson = isJson === undefined ? true :isJson;
+
+			var ajax = new XMLHttpRequest();
+			//拼接参数
+			var str = '';
+			if(query){
+				for(var key in query){
+					str += key +'='+ query[key] + '&';
+				}
+				str = str.slice(0,-1);
+			}
+
+			if(method.toUpperCase() === "GET"){
+				url += "?" + str;
+				ajax.open('GET',url,true);
+				ajax.send(null);
+			}else if(method.toUpperCase() === "POST"){
+				ajax.open('POST',url,true);
+				ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				ajax.send(str);
+			}else{
+				alert('方法错误');
+			}
+
+			ajax.onreadystatechange = function(){
+				if(ajax.readyState === 4){
+					if(ajax.status === 200){
+						callback && callback(isJson ? JSON.parse(ajax.responseText) : ajax.responseText)
+					}else{
+						alert('请求失败');
+					}
+				}
+			}
+
+
+		}
+	</script>
+
+</body>
+</html>
