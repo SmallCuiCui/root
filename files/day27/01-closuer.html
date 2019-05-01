@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    function fn () {
+      var num = 1;
+      function foo () {
+        num++;
+        return num;
+      }
+      return foo;
+    }
+
+    var f1 = fn();
+    var n = f1();
+    console.log(n);
+
+    var m = f1();
+    console.log(m);
+
+
+    // function f2 () {
+    //   // 访问不到num，说明不会造成全局污染
+    //   num++;
+    // }
+
+
+  </script>
+</body>
+</html>

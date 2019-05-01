@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    class Animal {
+      constructor (name) {
+        this.name = name;
+      }
+
+      say () {
+        alert(this.name);
+      }
+
+    }
+
+    class Cat extends Animal {
+      constructor (name) {
+        super(name);
+      }
+
+      say () {
+        // 重写
+        console.log(123)
+      }
+    }
+
+    var tom = new Cat("Tom");
+    tom.say();
+
+    console.log(tom instanceof Cat);
+    console.log(tom instanceof Animal);
+
+  </script>
+</body>
+</html>

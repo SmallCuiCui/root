@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div{width: 200px; height: 200px; background: red;position: absolute;}
+  </style>
+</head>
+<body>
+  <div id="box"></div>
+  <div id="box1"></div>
+  <script>
+    class Drag {
+      constructor (selector) {
+        this.box = document.querySelector(selector);
+        this.init();
+      }
+
+      init () {
+        this.box.onmousedown = e => {
+          let disX = e.offsetX,
+              disY = e.offsetY;
+          
+          this.bindMove(disX, disY);
+          
+          document.onmouseup = () => {
+            document.onmousemove = null;
+          }
+          return false;
+        }
+      }
+
+      bindMove (x, y) {
+        document.onmousemove = e => {
+            let _left = e.clientX - x,
+                _top = e.clientY - y;
+
+            this.move(_left, _top);
+          }
+      }
+
+      move (left, top) {
+        this.box.style.left = left + "px";
+        this.box.style.top = top + "px";
+
+      }
+    }
+
+    new Drag("#box");
+
+    class ExtendsDrag extends Drag {
+      constructor (selector) {
+        super(selector);
+      }
+
+      bindMove (x, y) {
+        document.onmousemove = e => {
+            let _left = e.clientX - x,
+                _top = e.clientY - y;
+            if(_left < 0) _left = 0;
+            if(_top < 0) _top = 0;
+            this.move(_left, _top);
+          }
+      }
+    }
+    new ExtendsDrag("#box1");
+  </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+header{
+  width: 1000px;
+  p {
+    height: 20px;
+    &:hover{
+      background: red;
+    }
+    &>a{
+      color: red;
+    }
+  }
+}

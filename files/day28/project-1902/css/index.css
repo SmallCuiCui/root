@@ -1,0 +1,10 @@
+header {
+  width: 1000px; }
+  header p {
+    height: 20px; }
+    header p:hover {
+      background: red; }
+    header p > a {
+      color: red; }
+
+/*# sourceMappingURL=index.css.map */

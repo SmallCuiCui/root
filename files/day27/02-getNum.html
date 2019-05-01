@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 取号机器
+    function numCompany () {
+      var n = 1; // 号码默认值
+      // 取号机制
+      function getNum () {
+        // 取号流程
+        n++; 
+        return n;
+      }
+      // 取号机制暴露出去
+      return getNum;
+    }
+
+    var fn = numCompany(); // 安装机器
+    console.log(fn());
+    console.log(fn());
+    console.log(fn());
+    console.log(fn());
+    console.log(fn());
+    console.log(fn());
+
+    var fn1 = numCompany(); // 安装机器
+    console.log(fn1())
+    console.log(fn1())
+    console.log(fn1())
+    console.log(fn1())
+
+  </script>
+</body>
+</html>

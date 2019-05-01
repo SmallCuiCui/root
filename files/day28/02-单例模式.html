@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // function getInstance () {
+    //   var date = new Date();
+    //   function instance () {
+    //     return date;
+    //   }
+    //   return instance;
+    // }
+    // var fn = getInstance();
+    // var d = fn();
+    // var d2 = fn();
+    // console.log(d === d2);
+
+
+
+    // 外层函数自调用，得到返回值为内层函数，所以getInstance就是内层函数
+    var getInstance = (function() {
+      var date = new Date();
+      function instance () {
+        return date;
+      }
+      return instance;
+    })();
+    // 反复调用getInstance得到的是外层函数活动对象里的同一个date
+    // 闭包
+    getInstance();
+  
+  </script>
+  
+</body>
+</html>
