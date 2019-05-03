@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>商品详情页</title>
+</head>
+<body>
+	<div id="box"></div>
+	<a href="record.html">查看浏览记录</a>
+	<script type="text/javascript">
+		var box = document.querySelector("#box");
+		json = [
+			{id:1,name:"鼠标",price:25},
+			{id:2,name:"键盘",price:215},
+			{id:3,name:"口红",price:35},
+			{id:4,name:"耳机",price:54},
+			{id:5,name:"水杯",price:85}
+		];
+
+
+
+		var id = location.search.slice(4);
+		//获取本条浏览数据的详情，filter得到的是一个瞒足条件的数组
+		var detail = json.filter(function(item) {
+			return item.id === Number(id);
+		})[0];
+
+		box.innerHTML = `name:${detail.name} 价格：${detail.price}`;
+
+		//浏览记录数据是json格式，存储在本地是转成了满足json格式的字符串进行存储
+		//查询record，如果有则重新存储，没有则添加record记录
+		var record = localStorage.getItem("record");
+		if(record){
+			//存在记录，则从新修改再存储
+			record = JSON.parse(record);
+
+			//进行过滤，看之前是否已经浏览过该商品，先删掉该商品记录再插入到头部
+			record = record.filter(function(item) {
+				//保留id不为本条商品的记录即可
+				return !(item.id === Number(id));
+			});
+
+			//在头部插入
+			record.unshift(detail);
+			localStorage.setItem("record",JSON.stringify(record));
+		}else{
+			//说明不存在浏览记录，则在localstorage存储一个只有一条记录的record
+			localStorage.setItem("record",JSON.stringify([detail]));
+		}
+	</script>
+</body>
+</html>

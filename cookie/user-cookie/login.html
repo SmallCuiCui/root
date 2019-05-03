@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../../tools.js"></script>
+	</head>
+	<body>
+		用户名：<input type="text" id="username"><br>
+		密码：<input type="password" id="password"><br>
+		<button id="btn">登录</button>
+		
+		<script>
+			var userInput = document.querySelector("#username");
+			var pswInput = document.querySelector("#password");
+			var btn = document.querySelector("#btn");
+
+			var obj = JSON.parse(tools.cookie("user"));
+			
+			userInput.value = obj.username;
+			pswInput.value = obj.psw;
+		</script>
+	</body>
+</html>

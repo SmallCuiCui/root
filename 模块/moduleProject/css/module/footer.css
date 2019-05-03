@@ -1,0 +1,13 @@
+p {
+  font-size: 12px;
+  text-align: center;
+  color: white;
+  height: 50px;
+  line-height: 50px;
+  background: #333333; }
+  p:hover {
+    color: red; }
+  p a {
+    color: yellow; }
+
+/*# sourceMappingURL=footer.css.map */

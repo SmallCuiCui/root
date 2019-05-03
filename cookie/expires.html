@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>cookie时效设置</title>
+</head>
+<body>
+	<button onclick = "setCookie()">存cookie</button>
+	<script type="text/javascript">
+		function setCookie(){
+			var date = new Date();
+			date.setDate(date.getDate()+1);
+			document.cookie = "username=zhangsan;expires="+date;
+			document.cookie = "age=18";
+			document.cookie = "render = man";
+			var str = document.cookie;
+			console.log(str);
+
+			//解析所有cookie
+			/*var cookies = {};
+			str.split("; ").forEach(item =>{
+				var cookie = item.split("=");
+				cookies[cookie[0]] = cookie[1];
+			});
+			console.log(cookies);*/
+
+			//采用归并进行解析cookie
+			var arr = document.cookie.split("; ");
+			console.log(arr);
+			var cookieObj = arr.reduce(function(obj,item){
+				var key = item.split("=");
+				obj[key[0]] = key[1];
+				//注意需要返回对象作为下次归并的参数
+				return obj;
+			},{});
+			console.log(cookieObj);
+
+		}
+	</script>
+
+</body>
+</html>

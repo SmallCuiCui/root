@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>商品列表页</title>
+</head>
+<body>
+	<ul id="list">
+		
+	</ul>
+	<script type="text/javascript">
+		var ul = document.querySelector("#list");
+		json = [
+			{id:1,name:"鼠标",price:25},
+			{id:2,name:"键盘",price:215},
+			{id:3,name:"口红",price:35},
+			{id:4,name:"耳机",price:54},
+			{id:5,name:"水杯",price:85}
+		];
+
+		json.forEach(item =>{
+			var li = document.createElement("li");
+			li.innerHTML = `
+				<span>${item.name}</span>
+				<span>￥:${item.price}</span>
+				<a href="detail.html?id=${item.id}">浏览详情</a>
+			`;
+			ul.appendChild(li);
+		})
+	</script>
+</body>
+</html>
